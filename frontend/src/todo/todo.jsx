@@ -11,7 +11,6 @@ export default class Todo extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = { description: '', list: [] }
 
         this.handleSearch = this.handleSearch.bind(this);
@@ -20,6 +19,7 @@ export default class Todo extends Component {
         this.handleRemove = this.handleRemove.bind(this);
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this);
         this.handleMarkAsPending = this.handleMarkAsPending.bind(this);
+        this.handleClear = this.handleClear.bind(this);
 
         this.refresh();
     }
@@ -30,6 +30,8 @@ export default class Todo extends Component {
             .then(res => this.setState({...this.state, description, list: res.data}, console.log(res.data)))
             
     }
+
+    useEffect
 
     handleSearch() {
         this.refresh(this.state.description);
@@ -60,6 +62,10 @@ export default class Todo extends Component {
             .then(res => this.refresh(this.state.description));
     }
 
+    handleClear() {
+        this.refresh();
+    }
+
     render() {
         return (
             <div>
@@ -69,7 +75,9 @@ export default class Todo extends Component {
                     handleChange={this.handleChange}
                     handleSearch={this.handleSearch}
                     handleAdd={this.handleAdd} 
+                    handleClear={this.handleClear} 
                 />
+                {console.log('LISTA',this.state.list)}
                 <TodoList 
                     list={this.state.list}
                     handleMarkAsDone={this.handleMarkAsDone}
