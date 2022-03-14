@@ -6,7 +6,7 @@ export default props => {
     const renderRows = () => {
         const list = props.list || []
 
-        return list.map(todo => {
+        return list.map(todo => (
             <tr key={todo._id}>
                 <td className={todo.done ? 'markAsDone' : ''}>{todo.description}</td>
                 <td>
@@ -32,7 +32,7 @@ export default props => {
                     />
                 </td>
             </tr>
-        })
+        ))
     }
 
     return (
