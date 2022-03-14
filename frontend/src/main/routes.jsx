@@ -6,8 +6,8 @@ import About from '../about/about';
 
 export default props => (
     <Router history={hashHistory}>
-        <Route path='/todo' component={Todo} />
+        <Route path='/todos' component={Todo} />
         <Route path='/about' component={About} />
-        <Route from='*' to='/todo' />
+        <Route from='*' to='/todos' />
     </Router>
 )
