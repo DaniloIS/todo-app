@@ -14,6 +14,7 @@ export default class Todo extends Component {
 
         this.state = { description: '', list: [] }
 
+        this.handleSearch = this.handleSearch.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
@@ -23,10 +24,15 @@ export default class Todo extends Component {
         this.refresh();
     }
 
-    refresh() {
-        axios.get(`${URL}?sort=-createdAt`)
-            .then(res => this.setState({...this.state, description: '', list: res.data}))
-            console.log(this.state.list)
+    refresh(description = '') {
+        const search = description ? `&description_regex/${description}/` : '';
+        axios.get(`${URL}?sort=-createdAt${search}`)
+            .then(res => this.setState({...this.state, description, list: res.data}, console.log(res.data)))
+            
+    }
+
+    handleSearch() {
+        this.refresh(this.state.description);
     }
 
     handleChange(e) {
@@ -41,17 +47,17 @@ export default class Todo extends Component {
 
     handleRemove(todo) {
         axios.delete(`${URL}/${todo._id}`)
-            .then(res => this.refresh());
+            .then(res => this.refresh(this.state.description));
     }
 
     handleMarkAsDone(todo) {
         axios.put(`${URL}/${todo._id}`, {...todo, done: true})
-            .then(res => this.refresh());
+            .then(res => this.refresh(this.state.description));
     }
 
     handleMarkAsPending(todo) {
         axios.put(`${URL}/${todo._id}`, {...todo, done: false})
-            .then(res => this.refresh());
+            .then(res => this.refresh(this.state.description));
     }
 
     render() {
@@ -61,6 +67,7 @@ export default class Todo extends Component {
                 <TodoForm 
                     description={this.state.description} 
                     handleChange={this.handleChange}
+                    handleSearch={this.handleSearch}
                     handleAdd={this.handleAdd} 
                 />
                 <TodoList 
