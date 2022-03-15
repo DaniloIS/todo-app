@@ -14,21 +14,21 @@ export default props => {
                         style='success' 
                         icon='check' 
                         hide={todo.done}
-                        onClick={() => handleMarkAsDone(todo)}
+                        onClick={() => props.handleMarkAsDone(todo)}
                     />
 
                     <IconButton 
                         style='warning' 
                         icon='undo' 
                         hide={!todo.done}
-                        onClick={() => handleMarkAsPending(todo)}
+                        onClick={() => props.handleMarkAsPending(todo)}
                     />
 
                     <IconButton 
                         style='danger' 
                         icon='trash-o' 
                         hide={!todo.done}
-                        onClick={() => handleRemove(todo)}
+                        onClick={() => props.handleRemove(todo)}
                     />
                 </td>
             </tr>
