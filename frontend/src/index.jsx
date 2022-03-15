@@ -7,6 +7,9 @@ import { Provider } from 'react-redux';
 import App from './main/app';
 import reducers from './main/reducers';
 
+//const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//const storeDevTools = createStore(reducers, devTools);
+
 const store = createStore(reducers);
 
 ReactDOM.render(
