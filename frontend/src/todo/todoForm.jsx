@@ -33,15 +33,15 @@ class TodoForm extends Component {
                     id='description' 
                     className='form-control' 
                     placeholder='Adicione uma tarefa'
-                    onChange={props.changeDescription}
-                    onKeyUp={keyHandler}
-                    value={props.description}
+                    onChange={this.props.changeDescription}
+                    onKeyUp={this.keyHandler}
+                    value={this.props.description}
                 />
             </Grid>
             <Grid cols='12 3 2'>
-                <IconButton style='primary' icon='plus' onClick={props.handleAdd} />
-                <IconButton style='info' icon='search' onClick={props.handleSearch} />
-                <IconButton style='default' icon='close' onClick={props.handleClear} />
+                <IconButton style='primary' icon='plus' onClick={this.props.handleAdd} />
+                <IconButton style='info' icon='search' onClick={this.props.handleSearch} />
+                <IconButton style='default' icon='close' onClick={this.props.handleClear} />
             </Grid>
         </div>
         )
