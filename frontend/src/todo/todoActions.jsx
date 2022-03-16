@@ -10,7 +10,17 @@ export const changeDescription = (event) => ({
 export const search = () => {
     const req = axios.get(`${URL}?sort=-createdAt`)
     return {
-        type: 'TODO_SEARCH',
+        type: 'TODO_SEARCHED',
         payload: req
     }
+}
+
+export const add = (description) => {
+    const req = axios.post(URL, {description})
+    return [{
+        type: 'TODO_ADDED',
+        payload: req
+    },
+        search()
+    ]
 }
